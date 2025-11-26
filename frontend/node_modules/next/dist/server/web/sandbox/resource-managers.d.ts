@@ -1,8 +1,8 @@
-declare abstract class ResourceManager<T, K> {
+declare abstract class ResourceManager<T, Args> {
     private resources;
-    abstract create(resourceArgs: K): T;
+    abstract create(resourceArgs: Args): T;
     abstract destroy(resource: T): void;
-    add(resourceArgs: K): T;
+    add(resourceArgs: Args): T;
     remove(resource: T): void;
     removeAll(): void;
 }
