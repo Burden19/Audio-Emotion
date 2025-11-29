@@ -1,5 +1,3 @@
-# backend/app/services/prediction_service.py
-
 import os
 import sys
 import numpy as np
@@ -68,12 +66,11 @@ class PredictionService:
                 # Handle .joblib files
                 if filename.endswith('.joblib'):
                     model_name = filename.replace('.joblib', '')
-                    # Normalize naming (replace spaces with underscores)
                     model_name = model_name.replace(' ', '_')
                     models.append(model_name)
 
-                # Handle Neural Network .h5 file
-                elif filename == 'Neural_Network.h5':
+                # Handle Neural Network .keras file
+                elif filename == 'Neural_Network.keras':
                     models.append('Neural_Network')
 
             logger.info(f"Available models: {models}")
@@ -91,7 +88,7 @@ class PredictionService:
 
         try:
             if model_name == "Neural_Network":
-                model_path = os.path.join(self.SAVE_DIR, "Neural_Network.h5")
+                model_path = os.path.join(self.SAVE_DIR, "Neural_Network.keras")
                 if not os.path.exists(model_path):
                     raise FileNotFoundError(f"Neural Network model not found at {model_path}")
                 model = load_model(model_path)
